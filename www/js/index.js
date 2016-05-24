@@ -64,6 +64,10 @@ window.plugin.notification.local.add({
     repeat:  'weekly',
     date:    _60_seconds_from_now
 });
+
+alert("welcome 3");
+
+
 	},
 	
 	notifyFunc :function () {
