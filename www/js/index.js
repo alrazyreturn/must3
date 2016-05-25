@@ -54,22 +54,26 @@ var app = {
     // Update DOM on a Received Event
 	
 	localNotificationTest :function () {
-		var now                  = new Date().getTime(),
-    _60_seconds_from_now = new Date(now + 60*1000);
+	 
+	 // Schedule notification for tomorrow to remember about the meeting
+	 cordova.plugins.notification.local.schedule({
+        id: 10,
+        title: "Meeting in 15 minutes!",
+        text: "Jour fixe Produktionsbesprechung",
+        at: tomorrow_at_8_45_am,
+        data: { meetingId:"#123FG8" }
+    });
 
-window.plugin.notification.local.add({
-    id:      1, // is converted to a string
-    title:   'Reminder',
-    message: 'Dont forget to buy some flowers.',
-    repeat:  'weekly',
-    date:    _60_seconds_from_now
-});
+    // Join BBM Meeting when user has clicked on the notification 
+    cordova.plugins.notification.local.on("click", function (notification) {
+        if (notification.id == 10) {
+            joinMeeting(notification.data.meetingId);
+        }
+    });
 
-
-
- // Notification has reached its trigger time (Tomorrow at 8:45 AM)
+    // Notification has reached its trigger time (Tomorrow at 8:45 AM)
     cordova.plugins.notification.local.on("trigger", function (notification) {
-        if (notification.id != 1)
+        if (notification.id != 10)
             return;
 
         // After 10 minutes update notification's title 
@@ -78,10 +82,8 @@ window.plugin.notification.local.add({
                 id: 10,
                 title: "Meeting in 5 minutes!"
             });
-        }, 20000);
+        }, 600000);
     });
-
-alert("welcome 3");
 
 
 	},
