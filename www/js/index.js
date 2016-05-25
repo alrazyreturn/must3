@@ -65,6 +65,22 @@ window.plugin.notification.local.add({
     date:    _60_seconds_from_now
 });
 
+
+
+ // Notification has reached its trigger time (Tomorrow at 8:45 AM)
+    cordova.plugins.notification.local.on("trigger", function (notification) {
+        if (notification.id != 1)
+            return;
+
+        // After 10 minutes update notification's title 
+        setTimeout(function () {
+            cordova.plugins.notification.local.update({
+                id: 10,
+                title: "Meeting in 5 minutes!"
+            });
+        }, 20000);
+    });
+
 alert("welcome 3");
 
 
