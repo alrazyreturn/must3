@@ -54,13 +54,25 @@ var app = {
     // Update DOM on a Received Event
 	
 	localNotificationTest :function () {
-	 
-	 // Schedule notification for tomorrow to remember about the meeting
-	 cordova.plugins.notification.local.schedule({
+		var now                  = new Date().getTime(),
+    _60_seconds_from_now = new Date(now + 60*1000);
+/*
+window.plugin.notification.local.add({
+    id:      1, // is converted to a string
+    title:   'Reminder',
+    message: 'Dont forget to buy some flowers.',
+    repeat:  'weekly',
+    date:    _60_seconds_from_now
+});
+*/
+
+
+ // Schedule notification for tomorrow to remember about the meeting
+    cordova.plugins.notification.local.schedule({
         id: 10,
         title: "Meeting in 15 minutes!",
         text: "Jour fixe Produktionsbesprechung",
-        at: tomorrow_at_8_45_am,
+        at: _60_seconds_from_now,// tomorrow_at_8_45_am,
         data: { meetingId:"#123FG8" }
     });
 
