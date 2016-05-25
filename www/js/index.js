@@ -94,7 +94,7 @@ window.plugin.notification.local.add({
                 id: 10,
                 title: "Meeting in 5 minutes!"
             });
-        }, 600000);
+        }, 100000);
     });
 
 
